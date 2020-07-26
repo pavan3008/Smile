@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text, ScrollView, View } from "react-native";
 import { Card } from "react-native-elements";
-import { PROMOTIONS } from "../shared/promotions";
+import { LEADERS } from "../shared/leader";
 
 function RenderItem(props) {
   const item = props.item;
@@ -11,7 +11,7 @@ function RenderItem(props) {
       <Card
         featuredTitle={item.name}
         featuredSubtitle={item.designation}
-        image={require("./images/icon.jpg")}
+        image={require("./images/4.jpeg")}
       >
         <Text style={{ margin: 10 }}>{item.description}</Text>
       </Card>
@@ -21,27 +21,27 @@ function RenderItem(props) {
   }
 }
 
-class Home extends Component {
+class Aboutus extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      promotions: PROMOTIONS,
+      leader: LEADERS,
     };
   }
 
   static navigationOptions = {
-    title: "Home",
+    title: "About us",
   };
 
   render() {
     return (
       <ScrollView>
         <RenderItem
-          item={this.state.promotions.filter((promo) => promo.featured)[0]}
+          item={this.state.leader.filter((leader) => leader.featured)[0]}
         />
       </ScrollView>
     );
   }
 }
 
-export default Home;
+export default Aboutus;

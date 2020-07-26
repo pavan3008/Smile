@@ -5,6 +5,8 @@ import { View, Platform } from "react-native";
 import { createStackNavigator, createDrawerNavigator } from "react-navigation";
 import { Icon } from "react-native-elements";
 import Home from "./HomeComponent";
+import Aboutus from "./Aboutus";
+import Contactus from "./Contactus";
 
 const MenuNavigator = createStackNavigator(
   {
@@ -15,7 +17,7 @@ const MenuNavigator = createStackNavigator(
     initialRouteName: "Menu",
     navigationOptions: {
       headerStyle: {
-        backgroundColor: "#512DA8",
+        backgroundColor: "#0F0C04",
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -32,7 +34,41 @@ const HomeNavigator = createStackNavigator(
   {
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: "#512DA8",
+        backgroundColor: "#0F0C04",
+      },
+      headerTitleStyle: {
+        color: "#fff",
+      },
+      headerTintColor: "#fff",
+    }),
+  }
+);
+
+const AboutNavigator = createStackNavigator(
+  {
+    Aboutus: { screen: Aboutus },
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#0F0C04",
+      },
+      headerTitleStyle: {
+        color: "#fff",
+      },
+      headerTintColor: "#fff",
+    }),
+  }
+);
+
+const ContactNavigator = createStackNavigator(
+  {
+    Contactus: { screen: Contactus },
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#0F0C04",
       },
       headerTitleStyle: {
         color: "#fff",
@@ -58,6 +94,20 @@ const MainNavigator = createDrawerNavigator(
         drawerLabel: "Menu",
       },
     },
+    Aboutus: {
+      screen: AboutNavigator,
+      navigationOptions: {
+        title: "About",
+        drawerLabel: "About",
+      },
+    },
+    Contactus: {
+      screen: ContactNavigator,
+      navigationOptions: {
+        title: "Contact",
+        drawerLabel: "Contact",
+      },
+    },
   },
   {
     drawerBackgroundColor: "#D1C4E9",
@@ -71,7 +121,7 @@ class Main extends Component {
         style={{
           flex: 1,
           paddingTop:
-            Platform.OS === "andriod" ? 0 : Expo.Constants.statusBarHeight,
+            Platform.OS === "ios" ? 0 : Expo.Constants.statusBarHeight,
         }}
       >
         <MainNavigator />

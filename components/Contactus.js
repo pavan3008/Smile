@@ -1,47 +1,39 @@
 import React, { Component } from "react";
 import { Text, ScrollView, View } from "react-native";
 import { Card } from "react-native-elements";
-import { PROMOTIONS } from "../shared/promotions";
+import { CONTACTS } from "../shared/contact";
 
 function RenderItem(props) {
   const item = props.item;
 
   if (item != null) {
-    return (
-      <Card
-        featuredTitle={item.name}
-        featuredSubtitle={item.designation}
-        image={require("./images/icon.jpg")}
-      >
-        <Text style={{ margin: 10 }}>{item.description}</Text>
-      </Card>
-    );
+    return <Text style={{ margin: 10 }}>{item.description}</Text>;
   } else {
     return <View></View>;
   }
 }
 
-class Home extends Component {
+class Contactus extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      promotions: PROMOTIONS,
+      contact: CONTACTS,
     };
   }
 
   static navigationOptions = {
-    title: "Home",
+    title: "Contact",
   };
 
   render() {
     return (
       <ScrollView>
         <RenderItem
-          item={this.state.promotions.filter((promo) => promo.featured)[0]}
+          item={this.state.contact.filter((contact) => contact.featured)[0]}
         />
       </ScrollView>
     );
   }
 }
 
-export default Home;
+export default Contactus;

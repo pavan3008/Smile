@@ -31,7 +31,7 @@ class Detail extends Component {
 
   render() {
     const placeId = this.props.navigation.getParam("placeId", "");
-    return <RenderDetail Place={this.state.contents[+placeId]} />;
+    return <RenderDetail detail={this.state.contents[+placeId]} />;
   }
 }
 

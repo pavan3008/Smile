@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import { Text, View } from "react-native";
 import { Card } from "react-native-elements";
+import { PLACES } from "../shared/content";
 
 function RenderDetail(props) {
   const detail = props.detail;
@@ -16,8 +17,22 @@ function RenderDetail(props) {
   }
 }
 
-function Detail(props) {
-  return <RenderDetail detail={props.detail} />;
+class Detail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      contents: PLACES,
+    };
+  }
+
+  static navigationOptions = {
+    title: "Details",
+  };
+
+  render() {
+    const placeId = this.props.navigation.getParam("placeId", "");
+    return <RenderDetail Place={this.state.contents[+placeId]} />;
+  }
 }
 
 export default Detail;

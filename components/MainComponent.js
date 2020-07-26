@@ -1,9 +1,29 @@
 import React, { Component } from "react";
 import Menu from "./MenuComponent";
 import Detail from "./DetailComponent";
-import { View } from "react-native";
+import { View, Platform } from "react-native";
+import { createStackNavigator } from "react-navigation";
 
 import { PLACES } from "../shared/content";
+
+const MenuNavigator = createStackNavigator(
+  {
+    Menu: { screen: Menu },
+    Detail: { screen: Detail },
+  },
+  {
+    initialRouteName: "Menu",
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: "#512DA8",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff",
+      },
+    },
+  }
+);
 
 class Main extends Component {
   constructor(props) {
@@ -20,18 +40,14 @@ class Main extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Menu
-          contents={this.state.contents}
-          onPress={(placeId) => this.onPlaceSelect(placeId)}
-        />
-        <Detail
-          detail={
-            this.state.contents.filter(
-              (place) => place.id === this.state.selectedPlace
-            )[0]
-          }
-        />
+      <View
+        style={{
+          flex: 1,
+          paddingTop:
+            Platform.OS === "ios" ? 0 : Expo.Constants.statusBarHeight,
+        }}
+      >
+        <MenuNavigator />
       </View>
     );
   }

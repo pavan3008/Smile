@@ -4,7 +4,7 @@ import React from "react";
 import Main from "./components/MainComponent";
 import { StyleSheet, Text, View } from "react-native";
 
-console.disableYellowBox = true;
+//LogBox.ignoreAllLogs(value);
 
 export default class App extends React.Component {
   //console.log("App executed"); //debugging; it is useful; before deploying comment it;

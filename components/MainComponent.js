@@ -8,19 +8,18 @@ import {
   ScrollView,
   Image,
   StyleSheet,
-} from "react-native";
-import {
-  createStackNavigator,
-  createDrawerNavigator,
-  DrawerItems,
   SafeAreaView,
-} from "react-navigation";
+} from "react-native";
+import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
+import { createStackNavigator, } from "react-navigation-stack";
+import { createAppContainer, } from "react-navigation";
+
 import { Icon } from "react-native-elements";
 import Home from "./HomeComponent";
 import Aboutus from "./Aboutus";
 import Contactus from "./Contactus";
 
-const MenuNavigator = createStackNavigator(
+const MenuNavigator = createAppContainer(createStackNavigator(
   {
     Menu: {
       screen: Menu,
@@ -49,9 +48,9 @@ const MenuNavigator = createStackNavigator(
       },
     },
   }
-);
+));
 
-const HomeNavigator = createStackNavigator(
+const HomeNavigator = createAppContainer(createStackNavigator(
   {
     Home: { screen: Home },
   },
@@ -74,9 +73,9 @@ const HomeNavigator = createStackNavigator(
       ),
     }),
   }
-);
+));
 
-const AboutNavigator = createStackNavigator(
+const AboutNavigator = createAppContainer(createStackNavigator(
   {
     Aboutus: { screen: Aboutus },
   },
@@ -99,9 +98,9 @@ const AboutNavigator = createStackNavigator(
       ),
     }),
   }
-);
+));
 
-const ContactNavigator = createStackNavigator(
+const ContactNavigator = createAppContainer(createStackNavigator(
   {
     Contactus: { screen: Contactus },
   },
@@ -124,7 +123,7 @@ const ContactNavigator = createStackNavigator(
       ),
     }),
   }
-);
+));
 
 const CustomDrawerContentComponent = (props) => (
   <ScrollView>
@@ -148,7 +147,7 @@ const CustomDrawerContentComponent = (props) => (
   </ScrollView>
 );
 
-const MainNavigator = createDrawerNavigator(
+const MainNavigator = createAppContainer(createDrawerNavigator(
   {
     Home: {
       screen: HomeNavigator,
@@ -206,7 +205,7 @@ const MainNavigator = createDrawerNavigator(
     drawerBackgroundColor: "#D1C4E9",
     contentComponent: CustomDrawerContentComponent,
   }
-);
+));
 
 class Main extends Component {
   render() {
